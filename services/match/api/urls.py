@@ -19,10 +19,10 @@ from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('rooms', views.RoomNameViewsets, basename='custom')
+router.register('match', views.MatchViewsets)
 
 urlpatterns = [
-    path('cc/', include(router.urls)),
+    path('api/', include(router.urls)),
     path("", views.index, name="index"),
     path("chat/<str:room_name>/", views.room, name="room"),
 ]
