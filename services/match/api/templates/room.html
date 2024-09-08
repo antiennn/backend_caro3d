@@ -19,7 +19,11 @@
             + roomName
             + '/'
         );
-
+        console.log('ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/')
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             document.querySelector('#chat-log').value += (data.message + '\n');
