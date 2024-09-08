@@ -24,7 +24,11 @@ SECRET_KEY = 'django-insecure-%=brwmsp8(mqm@x89ub1+#_o2v5$9$)puyk*u37*f*(b=*!giw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Application definition
 
@@ -38,9 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -110,6 +116,16 @@ CHANNEL_LAYERS = {
                 "redis://:slGuYGO6WjSYNW4HwsVRPIfhmKbGDK76@redis-18866.c252.ap-southeast-1-1.ec2.redns.redis-cloud.com:18866/0")],
         },
     },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://:slGuYGO6WjSYNW4HwsVRPIfhmKbGDK76@redis-18866.c252.ap-southeast-1-1.ec2.redns.redis-cloud.com:18866/0',  # Replace with your Redis server details
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+    }
 }
 
 # Internationalization
